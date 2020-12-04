@@ -83,8 +83,12 @@ object Dependencies {
     object Other {
         object Versions {
             const val gsonVersion = "2.8.2"
+            const val paletteVersion = "28.0.0"
+            const val colorPickerVersion = "2.0.5"
         }
         const val gson = "com.google.code.gson:gson:${Versions.gsonVersion}"
+        const val palette= "com.android.support:palette-v7:${Versions.paletteVersion}"
+        const val colorPicker= "com.github.skydoves:colorpickerpreference:${Versions.colorPickerVersion}"
     }
 
     object Testing {
