@@ -32,7 +32,7 @@ abstract class BaseBoundFragment<VIEW_MODEL_TYPE : BaseViewModel> : BaseFragment
             val viewModelRId = viewModelNameRId
             if (viewModelRId != 0) {
                 it.setVariable(viewModelRId, viewModel)
-                it.setLifecycleOwner(viewLifecycleOwner)
+                it.lifecycleOwner = viewLifecycleOwner
                 it.executePendingBindings()
             }
         }

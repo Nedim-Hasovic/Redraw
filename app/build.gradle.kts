@@ -131,6 +131,8 @@ dependencies {
     implementation(Dependencies.Database.roomKtx)
 
     implementation(Dependencies.Other.gson)
+    implementation(Dependencies.Other.palette)
+    implementation(Dependencies.Other.colorPicker)
 
     kapt(Dependencies.DependencyInjections.daggerCompiler)
     kapt(Dependencies.DependencyInjections.daggerAndroidProcessor)
