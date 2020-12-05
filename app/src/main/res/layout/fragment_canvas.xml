@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -12,9 +13,58 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include
-            android:id="@+id/container_canvas"
-            layout="@layout/view_canvas" />
+        <LinearLayout
+            android:id="@+id/container_selection"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btn_new_canvas"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:contentDescription="@string/canvas_new"
+                android:src="@drawable/save" />
+
+            <ImageButton
+                android:id="@+id/btn_draw"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:contentDescription="@string/canvas_brush"
+                android:src="@drawable/brush" />
+
+            <ImageButton
+                android:id="@+id/btn_erase"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:contentDescription="@string/canvas_erase"
+                android:src="@drawable/eraser" />
+
+            <ImageButton
+                android:id="@+id/btn_save"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:contentDescription="@string/canvas_save"
+                android:src="@drawable/save" />
+
+        </LinearLayout>
+
+        <ba.app.redraw.ui.main.canvas.CanvasView
+            android:id="@+id/canvas_view"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/cardview_light_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/container_selection" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

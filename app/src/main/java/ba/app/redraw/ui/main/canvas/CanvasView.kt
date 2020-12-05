@@ -76,10 +76,9 @@ class CanvasView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
         return true
     }
 
-    fun setColor(newColor: String?) {
+    fun setColor(newColor: Int) {
         invalidate()
-        paintColor = Color.parseColor(newColor)
-        drawPaint.color = paintColor
+        drawPaint.color = newColor
     }
 
     fun setupDrawing() {

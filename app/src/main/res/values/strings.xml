@@ -4,11 +4,30 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="filename">drawing</string>
+
     <string name="action_log_out">Log Out</string>
     <string name="title_activity_main" tools:ignore="UnusedResources">MainActivity</string>
 
+    <!-- Menu items -->
     <string name="canvas_new">New</string>
     <string name="canvas_erase">Erase</string>
     <string name="canvas_save">Save</string>
     <string name="canvas_brush">Brush</string>
+
+    <!-- Canvas -->
+    <string name="canvas_new_drawing_title">New drawing</string>
+    <string name="canvas_new_drawing_meessage">Start new drawing (you will lose the current drawing)?</string>
+
+    <!-- Dialog actions -->
+    <string name="action_save_drawing_title">New</string>
+    <string name="action_save_drawing_message">New</string>
+    <string name="action_choose_color">Choose color</string>
+    <string name="action_color_preference">MyColorPickerDialog</string>
+
+    <!-- Toast messages -->
+    <string name="toast_drawing_saved">Drawing saved to Gallery.</string>
+    <string name="toast_drawing_not_saved">Image could not be saved.</string>
 </resources>
