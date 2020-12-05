@@ -6,4 +6,9 @@
 
     <string name="action_log_out">Log Out</string>
     <string name="title_activity_main" tools:ignore="UnusedResources">MainActivity</string>
+
+    <string name="canvas_new">New</string>
+    <string name="canvas_erase">Erase</string>
+    <string name="canvas_save">Save</string>
+    <string name="canvas_brush">Brush</string>
 </resources>
