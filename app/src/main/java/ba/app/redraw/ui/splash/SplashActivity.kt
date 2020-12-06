@@ -4,13 +4,13 @@ import android.content.Intent
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
+import ba.app.redraw.R
 import ba.app.redraw.data.session.SessionRepository
 import ba.app.redraw.scheduling.DispatcherProvider
 import ba.app.redraw.ui.base.di.viewmodel.ViewModelKey
 import ba.app.redraw.ui.base.view.BaseBoundActivity
 import ba.app.redraw.ui.base.viewmodel.BaseViewModel
 import ba.app.redraw.ui.base.viewmodel.SingleLiveEvent
-import ba.app.redraw.ui.landing.LandingActivity
 import ba.app.redraw.ui.main.MainActivity
 import dagger.Binds
 import dagger.Module
@@ -27,20 +27,16 @@ class SplashActivity : BaseBoundActivity<SplashViewModel>() {
 
     override fun bindToViewModel() {
         viewModel.navigationEvent.observe(this) {
-            when (it) {
-                SplashViewModel.NavigationEvent.MAIN ->
-                    startActivity(Intent(this, MainActivity::class.java))
-                SplashViewModel.NavigationEvent.LANDING ->
-                    startActivity(Intent(this, LandingActivity::class.java))
-            }
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 }
 
 class SplashViewModel
 @Inject constructor(
-    private val sessionRepository: SessionRepository,
-    dispatcherProvider: DispatcherProvider
+        private val sessionRepository: SessionRepository,
+        dispatcherProvider: DispatcherProvider
 ) : BaseViewModel(dispatcherProvider) {
 
     enum class NavigationEvent {
@@ -54,11 +50,8 @@ class SplashViewModel
     fun onStart() {
         runIo {
             sessionRepository.hasSession().also {
-                if (it) {
-                    navigationEvent.postValue(NavigationEvent.MAIN)
-                } else {
-                    navigationEvent.postValue(NavigationEvent.LANDING)
-                }
+                // TODO: will be implemented later
+                navigationEvent.postValue(NavigationEvent.MAIN)
             }
         }
     }
