@@ -1,9 +1,7 @@
 package ba.app.redraw.ui.main
 
 import android.content.Intent
-import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModel
@@ -16,6 +14,7 @@ import ba.app.redraw.ui.landing.LandingActivity
 import ba.app.redraw.ui.main.canvas.CanvasFragment
 import ba.app.redraw.ui.main.canvas.CanvasModule
 import com.google.android.material.navigation.NavigationView
+import com.skydoves.colorpickerview.ColorPickerDialog
 import com.skydoves.colorpickerview.listeners.ColorListener
 import dagger.Binds
 import dagger.Module
@@ -23,7 +22,6 @@ import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-
 
 class MainActivity : BaseBoundActivity<MainViewModel>(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -46,26 +44,6 @@ class MainActivity : BaseBoundActivity<MainViewModel>(), NavigationView.OnNaviga
         } else {
             super.onBackPressed()
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        val id = item.itemId
-
-        if (id == R.id.action_log_out) {
-            viewModel.onLogOutClick()
-            return true
-        }
-
-        return super.onOptionsItemSelected(item)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -92,8 +70,8 @@ class MainActivity : BaseBoundActivity<MainViewModel>(), NavigationView.OnNaviga
     }
 
     private fun setListeners() {
-        fab_paint.setOnClickListener { view ->
-            color_picker.visibility = View.VISIBLE
+        fab_paint.setOnClickListener {
+            showColorPickerDialog()
         }
 
         val toggle = ActionBarDrawerToggle(
@@ -106,17 +84,27 @@ class MainActivity : BaseBoundActivity<MainViewModel>(), NavigationView.OnNaviga
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
         nav_view.setNavigationItemSelectedListener(this)
-
-        color_picker.setColorListener(ColorListener { color, fromUser ->
-            color_picker.visibility = View.GONE
-            // TODO: get color
-        })
     }
 
     private fun setObservers() {
         viewModel.landingNavigationTrigger.observe(this) {
             startActivity(Intent(this, LandingActivity::class.java))
             finish()
+        }
+    }
+
+    private fun showColorPickerDialog() {
+        val colorPickerDialog = ColorPickerDialog.Builder(this)
+        colorPickerDialog.run {
+            setTitle(context.getString(R.string.action_choose_color))
+            setPreferenceName(context.getString(R.string.action_color_preference))
+            setPositiveButton(getString(R.string.yes), object : ColorListener {
+                override fun onColorSelected(color: Int, fromUser: Boolean) {
+                    viewModel.colorSelected.value = color
+                }
+            })
+            setNegativeButton(context.getString(R.string.no)) { dialog, _ -> dialog.cancel() }
+            show()
         }
     }
 }

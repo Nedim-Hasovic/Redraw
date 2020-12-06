@@ -20,7 +20,8 @@ abstract class BaseFragment : DaggerFragment() {
     @get:LayoutRes
     abstract val layoutRId: Int
 
-    private lateinit var viewDataBinding: ViewDataBinding
+    protected lateinit var viewDataBinding: ViewDataBinding
+        private set
 
     /**
      * Inflates layout

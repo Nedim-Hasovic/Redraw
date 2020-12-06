@@ -1,6 +1,7 @@
 package ba.app.redraw.ui.base.viewmodel
 
 import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ba.app.redraw.scheduling.DispatcherProvider
@@ -11,6 +12,9 @@ import kotlinx.coroutines.plus
 import kotlinx.coroutines.withContext
 
 abstract class BaseViewModel(protected val dispatcherProvider: DispatcherProvider) : ViewModel(), LifecycleObserver {
+
+    var colorSelected = MutableLiveData<Int>()
+
     protected fun runOn(coroutineDispatcher: CoroutineDispatcher, block: suspend CoroutineScope.() -> Unit) {
         (viewModelScope + coroutineDispatcher).launch {
             block()

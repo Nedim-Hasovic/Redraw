@@ -22,18 +22,4 @@
         app:headerLayout="@layout/header_nav_main"
         app:menu="@menu/activity_main_drawer" />
 
-    <com.skydoves.colorpickerview.ColorPickerView
-        android:id="@+id/color_picker"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        app:actionMode="last"
-        app:alpha_flag="0.8"
-        app:alpha_selector="0.8"
-        app:debounceDuration="1000"
-        android:visibility="gone"
-        app:palette="@drawable/palette"
-        app:preferenceName="MyColorPicker"
-        app:selector="@drawable/wheel"
-        app:selector_size="32dp" />
-
 </androidx.drawerlayout.widget.DrawerLayout>
