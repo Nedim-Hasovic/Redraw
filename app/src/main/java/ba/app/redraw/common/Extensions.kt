@@ -7,8 +7,14 @@ import android.graphics.drawable.Drawable
 import android.os.Build
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 
-// Context extensions
+fun FragmentActivity.getCurrentVisibleFragment(): Fragment = try {
+    supportFragmentManager.fragments[0].childFragmentManager.fragments[0]
+} catch (e: Exception) {
+    supportFragmentManager.fragments[0]
+}
 
 fun Context.getStringByName(resourceName: String): String {
     return try {
