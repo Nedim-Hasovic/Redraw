@@ -30,28 +30,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:contentDescription="@string/canvas_new"
-                android:src="@drawable/save" />
+                android:src="@drawable/ic_new" />
 
             <ImageButton
                 android:id="@+id/btn_draw"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:contentDescription="@string/canvas_brush"
-                android:src="@drawable/brush" />
+                android:src="@drawable/ic_brush" />
 
             <ImageButton
                 android:id="@+id/btn_erase"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:contentDescription="@string/canvas_erase"
-                android:src="@drawable/eraser" />
+                android:src="@drawable/ic_eraser" />
 
             <ImageButton
                 android:id="@+id/btn_save"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:contentDescription="@string/canvas_save"
-                android:src="@drawable/save" />
+                android:src="@drawable/ic_save" />
 
         </LinearLayout>
 
