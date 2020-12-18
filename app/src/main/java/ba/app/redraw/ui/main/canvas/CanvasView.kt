@@ -39,7 +39,7 @@ class CanvasView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
 
     fun setErase(isErase: Boolean) {
         erase = isErase
-        if (erase) drawPaint.xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) else drawPaint!!.xfermode = null
+        if (erase) drawPaint.xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) else drawPaint.xfermode = null
     }
 
     fun setBrushSize(newSize: Float) {
@@ -84,7 +84,7 @@ class CanvasView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
     fun setupDrawing() {
         drawPath = Path()
         drawPaint = Paint()
-        brushSize = 20f // TODO: should be set by a variable
+        brushSize = 20f // TODO: future improvement
         lastBrushSize = brushSize
 
         drawPaint.run {

@@ -7,6 +7,8 @@ import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModel
 import ba.app.redraw.BR
 import ba.app.redraw.R
+import ba.app.redraw.common.getCurrentVisibleFragment
+import ba.app.redraw.data.models.CanvasSingleton
 import ba.app.redraw.ui.base.di.FragmentScope
 import ba.app.redraw.ui.base.di.viewmodel.ViewModelKey
 import ba.app.redraw.ui.base.view.BaseBoundActivity
@@ -100,7 +102,9 @@ class MainActivity : BaseBoundActivity<MainViewModel>(), NavigationView.OnNaviga
             setPreferenceName(context.getString(R.string.action_color_preference))
             setPositiveButton(getString(R.string.yes), object : ColorListener {
                 override fun onColorSelected(color: Int, fromUser: Boolean) {
-                    viewModel.colorSelected.value = color
+                    if (getCurrentVisibleFragment() is CanvasFragment) {
+                        (getCurrentVisibleFragment() as CanvasFragment).setupColor(color)
+                    }
                 }
             })
             setNegativeButton(context.getString(R.string.no)) { dialog, _ -> dialog.cancel() }

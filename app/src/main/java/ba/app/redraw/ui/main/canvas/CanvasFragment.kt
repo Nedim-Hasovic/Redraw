@@ -42,7 +42,6 @@ class CanvasFragment : BaseBoundFragment<CanvasViewModel>() {
 
         setupUI()
         setListeners()
-        setObservers()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -54,6 +53,10 @@ class CanvasFragment : BaseBoundFragment<CanvasViewModel>() {
         return if (id == R.id.action_settings) {
             true
         } else super.onOptionsItemSelected(item)
+    }
+
+    fun setupColor(color: Int) {
+        drawView.setColor(color)
     }
 
     private fun setupUI() {
@@ -115,14 +118,6 @@ class CanvasFragment : BaseBoundFragment<CanvasViewModel>() {
                 }
                 setNegativeButton(context?.getString(R.string.no)) { dialog, _ -> dialog.cancel() }
                 show()
-            }
-        }
-    }
-
-    private fun setObservers() {
-        viewModel.colorSelected.observe(this) {
-            if (it != null) {
-                drawView.setColor(it)
             }
         }
     }
